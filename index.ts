@@ -31,6 +31,12 @@ export enum ImageFormat {
   base64 = 'base64',
 }
 
+export type ImageResizeType = {
+  left: number;
+  right: number;
+  top: number;
+  down: number;
+}
 
 export type ShadowLayerStyle = {
   'dx': number,
@@ -68,6 +74,7 @@ export type TextMarkOption = {
   textBackgroundStyle?: TextBackgroundStyle,
   saveFormat?: ImageFormat,
   maxSize?: number, // android only see #49 #42
+  imageResize?: ImageResizeType
 }
 
 export type ImageMarkOption = {
