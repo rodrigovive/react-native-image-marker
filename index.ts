@@ -113,6 +113,12 @@ export default class Marker {
       filename,
       saveFormat,
       maxSize = 2048,
+      imageResize = {
+        left: 0,
+        top: 0,
+        right: 0,
+        down: 0
+      }
     } = option
 
     if (!src) {
@@ -146,6 +152,8 @@ export default class Marker {
         filename,
         saveFormat,
         maxSize,
+          imageResize.top,
+          imageResize.right
       )
     } else {
       return ImageMarker.addTextByPostion(
@@ -161,7 +169,9 @@ export default class Marker {
         quality,
         filename,
         saveFormat,
-        maxSize
+        maxSize,
+          imageResize.top,
+          imageResize.right
       )
     }
   }

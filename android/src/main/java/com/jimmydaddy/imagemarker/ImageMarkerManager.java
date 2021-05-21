@@ -309,6 +309,8 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
             int quality,
             String dest,
             String saveFormat,
+            Integer topImage,
+            Integer rightImage,
             final Promise promise
     ) {
         BufferedOutputStream bos = null;
@@ -331,7 +333,8 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
 //                prePhoto = Bitmap.createScaledBitmap(prePhoto, width, height, true);
 //            }
 
-            canvas.drawBitmap(bg, 0, 0, photoPaint);
+            canvas.drawColor(Color.WHITE);
+            canvas.drawBitmap(bg, topImage, rightImage, photoPaint);
 
             if (bg != null && !bg.isRecycled()) {
                 bg.recycle();
@@ -484,6 +487,8 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
             String filename,
             final String saveFormat,
             Integer maxSize,
+            final Integer topImage,
+            final Integer rightImage,
             final Promise promise
     ) {
         if (TextUtils.isEmpty(mark)){
@@ -514,7 +519,7 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
                     public void onNewResultImpl(Bitmap bitmap) {
                         if (bitmap != null) {
                             Bitmap bg = Utils.scaleBitmap(bitmap, scale);
-                            markImageByText(bg, mark, null, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, X, Y, quality, dest, saveFormat, promise);
+                            markImageByText(bg, mark, null, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, X, Y, quality, dest, saveFormat, topImage, rightImage promise);
                         } else {
                             promise.reject( "marker error","Can't retrieve the file from the src: " + uri);
                         }
@@ -545,7 +550,7 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
                         bitmap.recycle();
                         System.gc();
                     }
-                    markImageByText(bg, mark, null, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, X, Y, quality, dest, saveFormat, promise);
+                    markImageByText(bg, mark, null, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, X, Y, quality, dest, saveFormat, topImage, rightImage, promise);
                 }
             }
         } catch (Exception e) {
@@ -580,6 +585,8 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
             String filename,
             final String saveFormat,
             Integer maxSize,
+            final Integer topImage,
+            final Integer rightImage,
             final Promise promise
     ) {
         if (TextUtils.isEmpty(mark)){
@@ -610,7 +617,7 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
                     public void onNewResultImpl(Bitmap bitmap) {
                         if (bitmap != null) {
                             Bitmap bg = Utils.scaleBitmap(bitmap, scale);
-                            markImageByText(bg, mark, position, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, null, null, quality, dest, saveFormat, promise);
+                            markImageByText(bg, mark, position, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, null, null, quality, dest, saveFormat, topImage, rightImage, promise);
                         } else {
                             promise.reject( "marker error","Can't retrieve the file from the src: " + uri);
                         }
@@ -641,7 +648,7 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
                         bitmap.recycle();
                         System.gc();
                     }
-                    markImageByText(bg, mark, position, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, null, null, quality, dest, saveFormat, promise);
+                    markImageByText(bg, mark, position, color, fontName, fontSize, myShadowStyle, myTextBackgroundStyle, null, null, quality, dest, saveFormat, topImage, rightImage, promise);
                 }
             }
         } catch (Exception e) {
