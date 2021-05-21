@@ -334,7 +334,7 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
 //            }
 
             canvas.drawColor(Color.WHITE);
-            canvas.drawBitmap(bg, topImage, rightImage, photoPaint);
+            canvas.drawBitmap(bg, rightImage, topImage, photoPaint);
 
             if (bg != null && !bg.isRecycled()) {
                 bg.recycle();
